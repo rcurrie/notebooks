@@ -1,0 +1,6 @@
+pysam
+pybedtools
+tensorflow
+keras
+tables
+docker
