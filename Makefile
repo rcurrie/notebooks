@@ -6,7 +6,7 @@ pod:
 		--user root \
 		-e GRANT_SUDO=yes \
 		-e NB_UID=`id -u` \
-		-e NB_GID=`id -g` \
+		-e NB_GID=`getent group treehouse | cut -d: -f3` \
 		-p 52820:8888 \
 		-v `echo ~`:/home/jovyan \
 		-v /scratch/rcurrie:/scratch \
