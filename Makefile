@@ -22,6 +22,7 @@ dev:
 		-e NB_GID=`id -g` \
 		-p 52820:8888 \
 		-v `echo ~`:/home/jovyan \
+		-v /var/run/docker.sock:/var/run/docker.sock \
     -v /data:/data \
     -v /data/scratch:/scratch \
     -v /data/treehouse:/treehouse \

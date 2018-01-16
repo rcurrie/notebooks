@@ -14,6 +14,9 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
+RUN curl -sSL https://get.docker.com/ | sh
+RUN usermod -aG docker jovyan
+
 RUN wget -qO- https://github.com/lomereiter/sambamba/releases/download/v0.6.7/sambamba_v0.6.7_linux.tar.bz2 \
   | tar xj -C /usr/local/bin
 
