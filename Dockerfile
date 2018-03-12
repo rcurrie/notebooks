@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:c7fb6660d096
+FROM jupyter/datascience-notebook:92fe05d1e7e5
 
 USER root
 
@@ -19,6 +19,8 @@ RUN usermod -aG docker jovyan
 
 RUN wget -qO- https://github.com/lomereiter/sambamba/releases/download/v0.6.7/sambamba_v0.6.7_linux.tar.bz2 \
   | tar xj -C /usr/local/bin
+
+RUN conda install --yes numpy==1.14.1 scikit-learn==0.19.0
 
 RUN pip install --upgrade pip
 ADD requirements.txt requirements.txt
