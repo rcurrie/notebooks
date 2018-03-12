@@ -12,10 +12,10 @@ jupyter:
 		-e NB_GID=`getent group treehouse | cut -d: -f3` \
 		-p 52820:8888 \
 		-p 52821:6006 \
-	  -v /var/run/docker.sock:/var/run/docker.sock \
+		-v /var/run/docker.sock:/var/run/docker.sock \
 		-v `echo ~`:/home/jovyan \
 		-v `readlink -f ~/scratch`:/home/jovyan/scratch \
 		-v `readlink -f ~/scratch/tumornormal`:/home/jovyan/tumornormal/data \
-    -v /pod/pstore/groups/treehouse:/treehouse:ro \
+		-v /pod/pstore/groups/treehouse:/treehouse:ro \
 		$(USER)-jupyter start-notebook.sh \
 		--NotebookApp.password='sha1:53987e611ec3:1a90d791daf75274c73f62f672ecfa935799bdee'
