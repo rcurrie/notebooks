@@ -20,10 +20,15 @@ RUN usermod -aG docker jovyan
 RUN wget -qO- https://github.com/lomereiter/sambamba/releases/download/v0.6.7/sambamba_v0.6.7_linux.tar.bz2 \
   | tar xj -C /usr/local/bin
 
-RUN conda install --yes numpy==1.14.1 scikit-learn==0.19.0
+RUN conda install --yes pytorch torchvision -c pytorch
+
+RUN conda install --yes tensorflow keras
 
 RUN pip install --upgrade pip
 ADD requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-USER jovyan
+RUN conda install --yes numpy==1.14.1 scikit-learn==0.19.0
+
+# USER jovyan
+USER root
