@@ -2,6 +2,13 @@ build:
 	# Build jupyter image for local use
 	docker build --rm -t $(USER)-jupyter .
 
+exec:
+	docker -it 
+
+run:
+	# Run a notebook on the command line with no timeout
+	jupyter nbconvert --ExecutePreprocessor.timeout=None --to notebook --execute ingest.ipynb  --output ingest.2.ipynb
+
 jupyter:
 	# Run jupyter notebook on local machine - change password to your own
 	docker run --rm -it --name $(USER)-jupyter \
