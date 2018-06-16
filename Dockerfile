@@ -1,34 +1,37 @@
-FROM jupyter/datascience-notebook:96f2f777be6e
+FROM jupyter/datascience-notebook:latest
 
-USER root
+# Installing via pip fails
+RUN conda install numpy=1.14.3 pandas=0.23.0
 
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    curl \
-    wget \
-    zip \
-    zlib1g-dev \
-    time \
-    samtools \
-    bedtools \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+# USER root
 
-RUN curl -sSL https://get.docker.com/ | sh
-RUN usermod -aG docker jovyan
+# RUN apt-get update -y && apt-get install -y --no-install-recommends \
+#     curl \
+#     wget \
+#     zip \
+#     zlib1g-dev \
+#     time \
+#     samtools \
+#     bedtools \
+#   && apt-get clean \
+#   && rm -rf /var/lib/apt/lists/*
 
-RUN wget -qO- https://github.com/lomereiter/sambamba/releases/download/v0.6.7/sambamba_v0.6.7_linux.tar.bz2 \
-  | tar xj -C /usr/local/bin
 
-# The order of these is intentional to work around conflicts
-RUN conda install --yes pytorch torchvision -c pytorch
+# RUN curl -sSL https://get.docker.com/ | sh
+# RUN usermod -aG docker jovyan
 
-RUN conda install --yes tensorflow keras
+# RUN wget -qO- https://github.com/lomereiter/sambamba/releases/download/v0.6.7/sambamba_v0.6.7_linux.tar.bz2 \
+#   | tar xj -C /usr/local/bin
 
-RUN pip install --upgrade pip
+# # The order of these is intentional to work around conflicts
+# RUN conda install --yes pytorch torchvision -c pytorch
+
+# RUN conda install --yes tensorflow keras
+
 ADD requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN conda install --yes numpy==1.14.1 scikit-learn==0.19.0
+# RUN pip install git+git://github.com/slundberg/shap@f610db02a4eaa0d0b008582eecd8a67cfa9a8926#egg=shap
+RUN pip install git+git://github.com/slundberg/shap#egg=shap
 
-USER jovyan
+USER $NB_USER
