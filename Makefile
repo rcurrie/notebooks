@@ -19,9 +19,8 @@ jupyter:
 		-p 52820:8888 \
 		-p 52821:6006 \
 		-v `echo ~`:/home/jovyan \
-		-v /scratch/rcurrie/data:/home/jovyan/data \
-		-v /scratch/rcurrie/data:/home/jovyan/tumornormal/data \
-		-v /scratch/rcurrie/data:/home/jovyan/deepmarker/data \
+		-v `readlink -f ~/scratch`:/home/jovyan/scratch \
+		-v `readlink -f ~/data`:/home/jovyan/data \
 		-v /pod/pstore/groups/treehouse:/treehouse:ro \
 		$(USER)-jupyter:latest start-notebook.sh \
 		--NotebookApp.password='sha1:53987e611ec3:1a90d791daf75274c73f62f672ecfa935799bdee'
