@@ -28,3 +28,12 @@ jupyter:
 		# -e JUPYTER_ENABLE_LAB=1 \
 		# -v `readlink -f ~/scratch`:/home/jovyan/scratch \
 		# -v `readlink -f ~/scratch/tumornormal`:/home/jovyan/tumornormal/data \
+		
+create_venv:
+	virtualenv -p python3 venv
+
+activate_venv:
+	source venv/bin/activate
+
+
+
