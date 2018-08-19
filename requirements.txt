@@ -9,5 +9,8 @@ s3fs
 scikit-learn
 scipy
 sklearn
+shap
 matplotlib
 jupyter
+cython
+tables
