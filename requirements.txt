@@ -1,6 +1,7 @@
 awscli
 boto3
 h5py
+tensorflow-cpu
 keras
 loompy
 numpy
@@ -11,6 +12,7 @@ scipy
 sklearn
 shap
 matplotlib
+seaborn
 jupyter
 cython
 tables
